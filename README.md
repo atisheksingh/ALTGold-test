@@ -51,3 +51,7 @@ The project utilizes the OpenZeppelin upgradeable contracts pattern to ensure th
 
 ## Conclusion
 The ALT GOLD token project is a robust implementation of a DeFi token with essential features for minting, burning, and redemption, designed with compliance and extensibility in mind.
+
+
+
+address on hoodi address : 0xce695DC066205d878cef2aEba3F6AD1E45e1D151

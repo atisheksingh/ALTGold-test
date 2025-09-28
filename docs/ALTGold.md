@@ -10,6 +10,23 @@
 
 ## Methods
 
+### MAX_SUPPLY
+
+```solidity
+function MAX_SUPPLY() external view returns (uint256)
+```
+
+
+
+*Maximum tokens that can be minted (100 million tokens)*
+
+
+#### Returns
+
+| Name | Type | Description |
+|---|---|---|
+| _0 | uint256 | undefined |
+
 ### addToWhitelist
 
 ```solidity
@@ -503,23 +520,6 @@ function upgradeToAndCall(address newImplementation, bytes data) external payabl
 | newImplementation | address | undefined |
 | data | bytes | undefined |
 
-### version
-
-```solidity
-function version() external pure returns (string)
-```
-
-
-
-
-
-
-#### Returns
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | string | undefined |
-
 
 
 ## Events
@@ -724,6 +724,31 @@ event WhitelistUpdated(address indexed account, bool added)
 |---|---|---|
 | account `indexed` | address | undefined |
 | added  | bool | undefined |
+
+
+
+## Errors
+
+### AddressNotWhitelisted
+
+```solidity
+error AddressNotWhitelisted()
+```
+
+
+
+
+
+
+### TransferToNonWhitelisted
+
+```solidity
+error TransferToNonWhitelisted()
+```
+
+
+
+
 
 
 

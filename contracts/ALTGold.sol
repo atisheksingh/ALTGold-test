@@ -15,6 +15,13 @@ contract ALTGold is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeable, P
     event Mint(address indexed to, uint256 amount);
     event Burn(address indexed from, uint256 amount);
     
+    // custom errors for gas optimization
+    error AddressNotWhitelisted();
+    error TransferToNonWhitelisted();
+
+    /// @dev Maximum tokens that can be minted (100 million tokens)
+    uint256 public constant MAX_SUPPLY = 100_000_000 * 10**18;
+
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
@@ -29,6 +36,7 @@ contract ALTGold is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeable, P
     }
     // mint erc20 token only by owner to whitelisted address
     function mint(address to, uint256 amount) public whenNotPaused onlyOwner {
+        require(totalSupply() + amount <= MAX_SUPPLY, "Minting exceeds max supply");
        require(_whitelist[to], 'Address not whitelisted');
         _mint(to, amount);
         emit Mint(to, amount);
@@ -72,18 +80,22 @@ contract ALTGold is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeable, P
     function unpause() public onlyOwner {
         _unpause();
     }
+
     // override _beforeTokenTransfer to include whenNotPaused and whitelist check
     function _beforeTokenTransfer(address from, address to, uint256 amount) internal override whenNotPaused {
         if (from != address(0) && to != address(0)) { 
-            require(_whitelist[from], "Sender not whitelisted");
-            require(_whitelist[to], "Recipient not whitelisted");
+            // Both sender and recipient must be whitelisted for regular transfers
+            if (!isWhitelisted(from)) {
+                revert AddressNotWhitelisted();
+
+            }
+            if (!isWhitelisted(to)) {
+                revert TransferToNonWhitelisted();
+            }
+            
         }
         super._beforeTokenTransfer(from, to, amount);
     } 
-    // return the version of the contract
-    function version() external pure returns (string memory) {
-        return "1.0.0";
-    }
     // authorize upgrade only by owner for UUPS pattern 
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 }

@@ -7,10 +7,10 @@ async function main() {
     await altGold.deployed();
     console.log("Proxy address:", altGold.address);
     // Deploy Redemption contract
-    const Redemption = await ethers.getContractFactory("Redemption");
-    const redemptionInstance = await Redemption.deploy();
-    await redemptionInstance.deployed();
-    console.log("Redemption deployed to:", redemptionInstance.address);
+    // const Redemption = await ethers.getContractFactory("Redemption");
+    // const redemptionInstance = await Redemption.deploy();
+    // await redemptionInstance.deployed();
+    // console.log("Redemption deployed to:", redemptionInstance.address);
 
     // Optionally, you can set up initial whitelisting or other configurations here
 }

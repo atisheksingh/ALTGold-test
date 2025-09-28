@@ -4,13 +4,13 @@ require("hardhat-contract-sizer");
 require("hardhat-gas-reporter");
 require("@openzeppelin/hardhat-upgrades");
 require("@primitivefi/hardhat-dodoc")
+require("solidity-coverage");
 require("dotenv").config();
-
 
 
 module.exports = {
    gasReporter: {
-    enabled: true,
+    enabled: false,
   },
 
   solidity: {
@@ -29,7 +29,13 @@ module.exports = {
       accounts :  process.env.PRIVATE_KEY
         ? [process.env.PRIVATE_KEY]
         : [],
-      chainId: 560148,
+      chainId: 560048,
     }
+  },
+  etherscan: {
+    apiKey: {
+      polygon: process.env.ETHERSCAN_API_KEY,
+      polygonMumbai: process.env.ETHERSCAN_API_KEY,
+    },
   },
 };

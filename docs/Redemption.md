@@ -10,10 +10,26 @@
 
 ## Methods
 
+### addUsdtTocontract
+
+```solidity
+function addUsdtTocontract(uint256 amount) external nonpayable
+```
+
+
+
+
+
+#### Parameters
+
+| Name | Type | Description |
+|---|---|---|
+| amount | uint256 | undefined |
+
 ### altGoldToken
 
 ```solidity
-function altGoldToken() external view returns (contract IERC20Upgradeable)
+function altGoldToken() external view returns (contract IALTGold)
 ```
 
 
@@ -25,7 +41,7 @@ function altGoldToken() external view returns (contract IERC20Upgradeable)
 
 | Name | Type | Description |
 |---|---|---|
-| _0 | contract IERC20Upgradeable | undefined |
+| _0 | contract IALTGold | undefined |
 
 ### altGoldTokenBalanceofContract
 
@@ -44,15 +60,15 @@ function altGoldTokenBalanceofContract() external view returns (uint256)
 |---|---|---|
 | _0 | uint256 | undefined |
 
-### dailyRedemptionLimit
+### getTotalRedeemed
 
 ```solidity
-function dailyRedemptionLimit() external view returns (uint256)
+function getTotalRedeemed() external view returns (uint256)
 ```
 
 
 
-*Daily redemption limit per user (default: 1000 ALTGOLD)*
+
 
 
 #### Returns
@@ -61,22 +77,21 @@ function dailyRedemptionLimit() external view returns (uint256)
 |---|---|---|
 | _0 | uint256 | undefined |
 
-### dailyUserRedemptions
+### getUserTotalRedeemed
 
 ```solidity
-function dailyUserRedemptions(address, uint256) external view returns (uint256)
+function getUserTotalRedeemed(address user) external view returns (uint256)
 ```
 
 
 
-*Mapping to track daily redemption limits per user*
+
 
 #### Parameters
 
 | Name | Type | Description |
 |---|---|---|
-| _0 | address | undefined |
-| _1 | uint256 | undefined |
+| user | address | undefined |
 
 #### Returns
 
@@ -87,7 +102,7 @@ function dailyUserRedemptions(address, uint256) external view returns (uint256)
 ### initialize
 
 ```solidity
-function initialize(contract IERC20Upgradeable _altGoldToken, contract IERC20Upgradeable _usdcToken) external nonpayable
+function initialize(address _altGoldToken, address _usdcToken, uint256 _RedemptionLimit) external nonpayable
 ```
 
 
@@ -98,8 +113,9 @@ function initialize(contract IERC20Upgradeable _altGoldToken, contract IERC20Upg
 
 | Name | Type | Description |
 |---|---|---|
-| _altGoldToken | contract IERC20Upgradeable | undefined |
-| _usdcToken | contract IERC20Upgradeable | undefined |
+| _altGoldToken | address | undefined |
+| _usdcToken | address | undefined |
+| _RedemptionLimit | uint256 | undefined |
 
 ### owner
 
@@ -118,10 +134,10 @@ function owner() external view returns (address)
 |---|---|---|
 | _0 | address | undefined |
 
-### redeem
+### redeemGoldForUSDC
 
 ```solidity
-function redeem(uint256 amount) external nonpayable
+function redeemGoldForUSDC(uint256 amount) external nonpayable
 ```
 
 
@@ -133,40 +149,6 @@ function redeem(uint256 amount) external nonpayable
 | Name | Type | Description |
 |---|---|---|
 | amount | uint256 | undefined |
-
-### redemptionFee
-
-```solidity
-function redemptionFee() external view returns (uint256)
-```
-
-Default: 0.5% (50 basis points)
-
-*Fee charged on redemptions (in basis points)*
-
-
-#### Returns
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | uint256 | undefined |
-
-### redemptionRate
-
-```solidity
-function redemptionRate() external view returns (uint256)
-```
-
-Default: 1 ALT GOLD = 50 USDC (5000 basis points)
-
-*Current redemption rate (USDC per ALT GOLD in basis points)*
-
-
-#### Returns
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | uint256 | undefined |
 
 ### renounceOwnership
 
@@ -182,7 +164,7 @@ function renounceOwnership() external nonpayable
 ### setAltGoldToken
 
 ```solidity
-function setAltGoldToken(contract IERC20Upgradeable _altGoldToken) external nonpayable
+function setAltGoldToken(address _altGoldToken) external nonpayable
 ```
 
 
@@ -193,7 +175,23 @@ function setAltGoldToken(contract IERC20Upgradeable _altGoldToken) external nonp
 
 | Name | Type | Description |
 |---|---|---|
-| _altGoldToken | contract IERC20Upgradeable | undefined |
+| _altGoldToken | address | undefined |
+
+### setTotalRedemptionLimit
+
+```solidity
+function setTotalRedemptionLimit(uint256 _totalRedemptionLimit) external nonpayable
+```
+
+
+
+
+
+#### Parameters
+
+| Name | Type | Description |
+|---|---|---|
+| _totalRedemptionLimit | uint256 | undefined |
 
 ### setusdcToken
 
@@ -211,23 +209,6 @@ function setusdcToken(contract IERC20Upgradeable _usdcToken) external nonpayable
 |---|---|---|
 | _usdcToken | contract IERC20Upgradeable | undefined |
 
-### totalFeesCollected
-
-```solidity
-function totalFeesCollected() external view returns (uint256)
-```
-
-
-
-*Total fees collected in USDC*
-
-
-#### Returns
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | uint256 | undefined |
-
 ### totalRedeemed
 
 ```solidity
@@ -237,6 +218,23 @@ function totalRedeemed() external view returns (uint256)
 
 
 *Total amount of ALTGOLD redeemed*
+
+
+#### Returns
+
+| Name | Type | Description |
+|---|---|---|
+| _0 | uint256 | undefined |
+
+### totalRedemptionLimit
+
+```solidity
+function totalRedemptionLimit() external view returns (uint256)
+```
+
+
+
+*Daily redemption limit per user*
 
 
 #### Returns
@@ -260,23 +258,6 @@ function transferOwnership(address newOwner) external nonpayable
 | Name | Type | Description |
 |---|---|---|
 | newOwner | address | undefined |
-
-### treasury
-
-```solidity
-function treasury() external view returns (address)
-```
-
-
-
-*Treasury address to collect fees*
-
-
-#### Returns
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | address | undefined |
 
 ### usdcToken
 
@@ -411,7 +392,7 @@ event RedemptionRequested(address indexed user, uint256 amount, uint256 timestam
 
 
 
-
+*Event emitted when a redemption is requested*
 
 #### Parameters
 

@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/home/atishek/Music/ALTGOLD/altgold-token-project/contracts/ALTGold.sol": {
-      "lastModificationDate": 1759049845529,
-      "contentHash": "c2e05f93c4cdb3ab4b2d4fce66b90d39",
+      "lastModificationDate": 1759058122608,
+      "contentHash": "29c1727b360a4b8d33919014d06194b8",
       "sourceName": "contracts/ALTGold.sol",
       "solcConfig": {
         "version": "0.8.19",
@@ -21,8 +21,6 @@
                 "evm.methodIdentifiers",
                 "metadata",
                 "storageLayout",
-                "devdoc",
-                "userdoc",
                 "devdoc",
                 "userdoc"
               ],
@@ -69,8 +67,6 @@
                 "metadata",
                 "storageLayout",
                 "devdoc",
-                "userdoc",
-                "devdoc",
                 "userdoc"
               ],
               "": [
@@ -112,8 +108,6 @@
                 "metadata",
                 "storageLayout",
                 "devdoc",
-                "userdoc",
-                "devdoc",
                 "userdoc"
               ],
               "": [
@@ -153,8 +147,6 @@
                 "evm.methodIdentifiers",
                 "metadata",
                 "storageLayout",
-                "devdoc",
-                "userdoc",
                 "devdoc",
                 "userdoc"
               ],
@@ -199,8 +191,6 @@
                 "metadata",
                 "storageLayout",
                 "devdoc",
-                "userdoc",
-                "devdoc",
                 "userdoc"
               ],
               "": [
@@ -241,8 +231,6 @@
                 "evm.methodIdentifiers",
                 "metadata",
                 "storageLayout",
-                "devdoc",
-                "userdoc",
                 "devdoc",
                 "userdoc"
               ],
@@ -286,8 +274,6 @@
                 "metadata",
                 "storageLayout",
                 "devdoc",
-                "userdoc",
-                "devdoc",
                 "userdoc"
               ],
               "": [
@@ -330,8 +316,6 @@
                 "metadata",
                 "storageLayout",
                 "devdoc",
-                "userdoc",
-                "devdoc",
                 "userdoc"
               ],
               "": [
@@ -372,8 +356,6 @@
                 "metadata",
                 "storageLayout",
                 "devdoc",
-                "userdoc",
-                "devdoc",
                 "userdoc"
               ],
               "": [
@@ -412,8 +394,6 @@
                 "metadata",
                 "storageLayout",
                 "devdoc",
-                "userdoc",
-                "devdoc",
                 "userdoc"
               ],
               "": [
@@ -451,8 +431,6 @@
                 "evm.methodIdentifiers",
                 "metadata",
                 "storageLayout",
-                "devdoc",
-                "userdoc",
                 "devdoc",
                 "userdoc"
               ],
@@ -494,8 +472,6 @@
                 "metadata",
                 "storageLayout",
                 "devdoc",
-                "userdoc",
-                "devdoc",
                 "userdoc"
               ],
               "": [
@@ -533,8 +509,6 @@
                 "evm.methodIdentifiers",
                 "metadata",
                 "storageLayout",
-                "devdoc",
-                "userdoc",
                 "devdoc",
                 "userdoc"
               ],
@@ -581,8 +555,6 @@
                 "metadata",
                 "storageLayout",
                 "devdoc",
-                "userdoc",
-                "devdoc",
                 "userdoc"
               ],
               "": [
@@ -620,8 +592,6 @@
                 "evm.methodIdentifiers",
                 "metadata",
                 "storageLayout",
-                "devdoc",
-                "userdoc",
                 "devdoc",
                 "userdoc"
               ],
@@ -661,8 +631,6 @@
                 "metadata",
                 "storageLayout",
                 "devdoc",
-                "userdoc",
-                "devdoc",
                 "userdoc"
               ],
               "": [
@@ -681,8 +649,8 @@
       ]
     },
     "/home/atishek/Music/ALTGOLD/altgold-token-project/contracts/Redemption.sol": {
-      "lastModificationDate": 1759050067022,
-      "contentHash": "24ed5f9a5bdbe246b97c74475edba8f5",
+      "lastModificationDate": 1759066799633,
+      "contentHash": "8c2d4846ef61b9188bb0f14a0f83608c",
       "sourceName": "contracts/Redemption.sol",
       "solcConfig": {
         "version": "0.8.19",
@@ -701,8 +669,6 @@
                 "metadata",
                 "storageLayout",
                 "devdoc",
-                "userdoc",
-                "devdoc",
                 "userdoc"
               ],
               "": [
@@ -715,7 +681,9 @@
       "imports": [
         "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
         "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol",
-        "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol"
+        "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol",
+        "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
+        "contracts/interfaces/IALTGold.sol"
       ],
       "versionPragmas": [
         "^0.8.19"
@@ -744,8 +712,6 @@
                 "evm.methodIdentifiers",
                 "metadata",
                 "storageLayout",
-                "devdoc",
-                "userdoc",
                 "devdoc",
                 "userdoc"
               ],
@@ -786,8 +752,6 @@
                 "evm.methodIdentifiers",
                 "metadata",
                 "storageLayout",
-                "devdoc",
-                "userdoc",
                 "devdoc",
                 "userdoc"
               ],
@@ -831,8 +795,6 @@
                 "metadata",
                 "storageLayout",
                 "devdoc",
-                "userdoc",
-                "devdoc",
                 "userdoc"
               ],
               "": [
@@ -871,8 +833,6 @@
                 "metadata",
                 "storageLayout",
                 "devdoc",
-                "userdoc",
-                "devdoc",
                 "userdoc"
               ],
               "": [
@@ -910,8 +870,6 @@
                 "evm.methodIdentifiers",
                 "metadata",
                 "storageLayout",
-                "devdoc",
-                "userdoc",
                 "devdoc",
                 "userdoc"
               ],
@@ -970,6 +928,84 @@
       ],
       "artifacts": [
         "console"
+      ]
+    },
+    "/home/atishek/Music/ALTGOLD/altgold-token-project/contracts/interfaces/IALTGold.sol": {
+      "lastModificationDate": 1759052104450,
+      "contentHash": "f778628c61ae326f6d6181f6f18a9e40",
+      "sourceName": "contracts/interfaces/IALTGold.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.8.19"
+      ],
+      "artifacts": [
+        "IALTGold"
+      ]
+    },
+    "/home/atishek/Music/ALTGOLD/altgold-token-project/node_modules/@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol": {
+      "lastModificationDate": 1758806959037,
+      "contentHash": "2c309ab8cb953d5db2a280f534c113cd",
+      "sourceName": "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../proxy/utils/Initializable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ReentrancyGuardUpgradeable"
       ]
     }
   }
