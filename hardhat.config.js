@@ -30,7 +30,15 @@ module.exports = {
         ? [process.env.PRIVATE_KEY]
         : [],
       chainId: 560048,
-    }
+    },
+    amoy: {
+     url: "https://polygon-amoy.g.alchemy.com/v2/KQmHtGqIlDxTiWbvbbMY7pMMQfyp_3YU" ,
+      accounts: process.env.PRIVATE_KEY
+        ? [process.env.PRIVATE_KEY]
+        : [],
+      chainId: 80002,
+    },
+   
   },
   etherscan: {
     apiKey: {
