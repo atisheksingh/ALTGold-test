@@ -28,6 +28,14 @@ describe("Redemption Contract", function () {
       { initializer: "initialize" }
     );
     await redemption.deployed();
+    
+    const RedemptionWithKYC = await ethers.getContractFactory("RedemptionWithKYC");
+      redemptionWithKYC = await upgrades.deployProxy(
+        RedemptionWithKYC,
+        [altGold.address, mockUSDC.address, 500],
+        { initializer: "initialize" }
+      );
+      await redemptionWithKYC.deployed();
 
     await altGold.addToWhitelist(user.address);
     await altGold.addToWhitelist(redemption.address);
@@ -199,3 +207,65 @@ describe("Redemption Contract", function () {
     await redemption.connect(owner).withdrawusdcToken(ownerInitialBalance);
   });
 });
+ // --- KYC Extension Tests ---
+  describe("RedemptionWithKYC Extension", function () {
+    let redemptionWithKYC;
+
+    beforeEach(async function () {
+
+         [owner, user] = await ethers.getSigners();
+
+
+
+      const RedemptionWithKYC = await ethers.getContractFactory("RedemptionWithKYC");
+
+    const ALTGold = await ethers.getContractFactory("ALTGold");
+     altGold = await upgrades.deployProxy(ALTGold, [], {
+      initializer: "initialize",
+    });
+    await altGold.deployed();
+
+     const MockUSDC = await ethers.getContractFactory("MockUSDC");
+    mockUSDC = await MockUSDC.connect(user).deploy();
+    await mockUSDC.deployed();
+
+
+      redemptionWithKYC = await upgrades.deployProxy(
+        RedemptionWithKYC,
+        [altGold.address, mockUSDC.address, 500],
+        { initializer: "initialize" }
+      );
+      await redemptionWithKYC.deployed();
+
+      await altGold.addToWhitelist(user.address);
+      await altGold.addToWhitelist(redemptionWithKYC.address);
+
+      await altGold.mint(user.address, ethers.utils.parseUnits("100", 18));
+      await altGold.connect(user).approve(redemptionWithKYC.address, ethers.utils.parseUnits("100", 18));
+
+      await altGold.connect(user).approve(redemptionWithKYC.address, ethers.utils.parseUnits("100", 18));
+      await mockUSDC.mint(redemptionWithKYC.address, ethers.utils.parseUnits("1000", 18));
+      await mockUSDC.mint(user.address, ethers.utils.parseUnits("1000", 18));
+   
+    });
+
+    it("should not allow redemption if user is not KYC compliant", async function () {
+      await expect(
+        redemptionWithKYC.connect(user).redeemGoldForUSDC(ethers.utils.parseUnits("10", 18))
+      ).to.be.revertedWith("User not compliant");
+    });
+
+
+    it("should allow owner to update KYC status", async function () {
+      await redemptionWithKYC.setKYC(user.address, true);
+      expect(await redemptionWithKYC.kycPassed(user.address)).to.equal(true);
+      await redemptionWithKYC.setKYC(user.address, false);
+      expect(await redemptionWithKYC.kycPassed(user.address)).to.equal(false);
+    });
+
+    it("should not allow non-owner to update KYC status", async function () {
+      await expect(
+        redemptionWithKYC.connect(user).setKYC(user.address, true)
+      ).to.be.revertedWith("Ownable: caller is not the owner");
+    });
+  });

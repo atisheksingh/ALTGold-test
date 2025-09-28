@@ -1,6 +1,6 @@
 node_modules
 # Hardhat files
-cache
+./cache
 artifacts
 coverage
 .openzeppelin

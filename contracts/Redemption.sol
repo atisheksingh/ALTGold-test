@@ -62,7 +62,9 @@ contract Redemption is Initializable, OwnableUpgradeable , ReentrancyGuardUpgrad
         __ReentrancyGuard_init();
     }
 
+   
     function redeemGoldForUSDC(uint256 amount) external nonReentrant {
+        require(_isCompliant(msg.sender), "User not compliant");
         require(amount > 0, "Amount must be greater than zero");
         require(
             amount <= totalRedemptionLimit,
@@ -85,15 +87,15 @@ contract Redemption is Initializable, OwnableUpgradeable , ReentrancyGuardUpgrad
         // Transfer ALT GOLD from user to this contract
         require(altGoldToken.transferFrom(msg.sender, address(this), amount),"Token transfer failed");
         // transfer usdcToken to user
-        require(usdcToken.transfer(msg.sender, amount), "USDC transfer failed");
+        require(usdcToken.transferFrom(address(this), msg.sender, amount), "USDC transfer failed");
         // Update redemption tracking
         totalRedeemed += amount;
         userTotalRedeemed[msg.sender] += amount;
         totalRedeemed -= amount;
         emit RedemptionRequested(msg.sender, amount, block.timestamp);
     }
-
-    function addUsdtTocontract (uint256 amount) external onlyOwner {
+    // adding usdc to contract for redemption.
+    function addUsdtTocontract (uint256 amount) external nonReentrant onlyOwner {
         require(amount > 0, "Amount must be greater than zero");
         require(
             usdcToken.transferFrom(msg.sender, address(this), amount),
@@ -151,5 +153,10 @@ contract Redemption is Initializable, OwnableUpgradeable , ReentrancyGuardUpgrad
         uint256 _totalRedemptionLimit
     ) external onlyOwner {
         totalRedemptionLimit = _totalRedemptionLimit * 10 ** 18; // assuming 18 decimals for ALTGOLD
+    }
+
+    //compliance check - placeholder for actual compliance logic
+    function _isCompliant(address user) internal view virtual returns (bool) {
+        return true;
     }
 }
