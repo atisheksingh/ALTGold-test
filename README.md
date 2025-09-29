@@ -55,3 +55,5 @@ The ALT GOLD token project is a robust implementation of a DeFi token with essen
 
 
 address on hoodi address : 0xce695DC066205d878cef2aEba3F6AD1E45e1D151
+
+https://amoy.polygonscan.com/address/0x8C8d624e687F503e1454ebf2F33033e30Eef716E
